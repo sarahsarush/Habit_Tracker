@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+    <h1 class="mt-4">{{ habit.name }}</h1>
+    <p>{{ habit.description }}</p>
+    <a href="{% url 'habit_edit' habit.pk %}" class="btn btn-secondary">Edit</a>
+    <a href="{% url 'habit_delete' habit.pk %}" class="btn btn-danger">Delete</a>
+    <a href="{% url 'daily_progress_create' habit.pk %}" class="btn btn-primary">Add Daily Progress</a>
+    <h2 class="mt-4">Daily Progress</h2>
+    <ul class="list-group">
+        {% for progress in habit.dailyprogress_set.all %}
+            <li class="list-group-item">
+                {{ progress.date }}
+                {% comment %} {{ progress.date }} - {{ progress.progress }} {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+
+   
+{% endblock %}

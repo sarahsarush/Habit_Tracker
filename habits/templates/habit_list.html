@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Habit List</h1>
+    <ul class="list-group">
+        {% for habit in habits %}
+            <li class="list-group-item">
+                <a href="{% url 'habit_detail' habit.pk %}">{{ habit.name }}</a>
+            {% comment %}                 
+                - <a href="{% url 'habit_edit' habit.pk %}">Edit</a>
+                - <a href="{% url 'habit_delete' habit.pk %}">Delete</a>
+            {% endcomment %}
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'habit_create' %}" class="btn btn-primary mt-4">Add New Habit</a>
+{% endblock %}
